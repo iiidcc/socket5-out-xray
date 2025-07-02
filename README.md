@@ -70,4 +70,4 @@ bash -c 'curl -sSL https://raw.githubusercontent.com/TikTok-AJ/socket5-out-xray/
 
 - 默认用户名为：`wukunpeng`，密码为：`aj8888`
 - 每次运行都自动设置快捷命令 `ja` 和 `AJ`
-- 支持所有主流国家（US / UK / DE / JP / FR ...）
+- 支持所有主流国家（US / GB / DE / JP / FR ...）
