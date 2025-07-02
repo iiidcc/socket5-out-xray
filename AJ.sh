@@ -11,7 +11,7 @@ AUTO_MODE=false
 [[ "$1" == "--auto" ]] && AUTO_MODE=true
 
 # 全局变量设置
-USER="wGBunpeng"
+USER="wukunpeng"
 PASS="aj8888"
 CONFIG_PATH="/usr/local/etc/xray/config.json"
 USED_PORTS_FILE="/usr/local/etc/xray/used_ports.txt"
