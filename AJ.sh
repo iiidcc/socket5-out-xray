@@ -11,7 +11,7 @@ AUTO_MODE=false
 [[ "$1" == "--auto" ]] && AUTO_MODE=true
 
 # 全局变量设置
-USER="wukunpeng"
+USER="wGBunpeng"
 PASS="aj8888"
 CONFIG_PATH="/usr/local/etc/xray/config.json"
 USED_PORTS_FILE="/usr/local/etc/xray/used_ports.txt"
@@ -60,8 +60,8 @@ detect_country() {
     COUNTRY="$detected"
     echo "🌍 自动模式：检测到国家代码 $COUNTRY"
     # 若检测结果不在支持列表，则退出
-    if [[ ! " US UK DE FR JP MX ES " =~ " $COUNTRY " ]]; then
-      echo "❌ 自动检测到的国家代码 $COUNTRY 不受支持，仅支持 [US UK DE FR JP MX ES]"
+    if [[ ! " US GB DE FR JP MX ES " =~ " $COUNTRY " ]]; then
+      echo "❌ 自动检测到的国家代码 $COUNTRY 不受支持，仅支持 [US GB DE FR JP MX ES]"
       exit 1
     fi
     return
@@ -74,14 +74,14 @@ detect_country() {
     echo "⚠️ 无法检测国家代码，请手动选择。"
     detected=""
   fi
-  if [[ -n "$detected" && " US UK DE FR JP MX ES " =~ " $detected " ]]; then
+  if [[ -n "$detected" && " US GB DE FR JP MX ES " =~ " $detected " ]]; then
     read -p "👉 是否使用检测到的国家代码? 按回车默认[Y] (Y/n): " use_detected
     if [[ "$use_detected" =~ ^[Nn]$ ]]; then
       detected=""
     fi
   fi
   if [[ -z "$detected" ]]; then
-    echo "可选国家代码： [US] [UK] [DE] [FR] [JP] [MX] [ES]"
+    echo "可选国家代码： [US] [GB] [DE] [FR] [JP] [MX] [ES]"
     read -p "请输入要使用的国家代码: " COUNTRY
   else
     echo "已选择国家代码: $detected"
@@ -89,7 +89,7 @@ detect_country() {
   fi
 
   # 再次验证用户选择的国家代码是否受支持
-  if [[ ! " US UK DE FR JP MX ES " =~ " $COUNTRY " ]]; then
+  if [[ ! " US GB DE FR JP MX ES " =~ " $COUNTRY " ]]; then
     echo "❌ 不支持的国家代码: $COUNTRY"
     exit 1
   fi
@@ -119,7 +119,7 @@ setup_timezone_and_dns() {
   # 国家代码与时区和DNS服务器映射
   declare -A TIMEZONES=(
     [US]="America/Los_Angeles"
-    [UK]="Europe/London"
+    [GB]="Europe/London"
     [DE]="Europe/Berlin"
     [FR]="Europe/Paris"
     [JP]="Asia/Tokyo"
@@ -128,7 +128,7 @@ setup_timezone_and_dns() {
   )
   declare -A DNS_SERVERS=(
     [US]='["tls://8.8.8.8","tls://8.8.4.4","localhost"]'
-    [UK]='["tls://1.1.1.1","tls://1.0.0.1","localhost"]'
+    [GB]='["tls://1.1.1.1","tls://1.0.0.1","localhost"]'
     [DE]='["tls://9.9.9.9","tls://149.112.112.112","localhost"]'
     [FR]='["tls://80.67.169.12","tls://80.67.169.40","localhost"]'
     [JP]='["tls://210.130.1.1","tls://210.130.1.2","localhost"]'
