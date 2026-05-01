@@ -18,7 +18,7 @@
 ### 🔧 手动菜单模式（推荐首次使用）
 
 ```bash
-bash -c 'curl -sSL https://raw.githubusercontent.com/TikTok-AJ/socket5-out-xray/main/AJ.sh -o /usr/local/bin/aj && chmod +x /usr/local/bin/aj && ln -sf /usr/local/bin/aj /usr/local/bin/AJ && /usr/local/bin/aj'
+bash -c 'curl -sSL https://raw.githubusercontent.com/iiidcc/socket5-out-xray/main/AJ.sh -o /usr/local/bin/aj && chmod +x /usr/local/bin/aj && ln -sf /usr/local/bin/aj /usr/local/bin/AJ && /usr/local/bin/aj'
 ```
 
 运行后会出现中文菜单，可选择安装/重装/查看节点等操作。
@@ -28,7 +28,7 @@ bash -c 'curl -sSL https://raw.githubusercontent.com/TikTok-AJ/socket5-out-xray/
 ### 🤖 自动模式（无人值守，适合脚本化）
 
 ```bash
-bash -c 'curl -sSL https://raw.githubusercontent.com/TikTok-AJ/socket5-out-xray/main/AJ.sh -o /usr/local/bin/aj && chmod +x /usr/local/bin/aj && ln -sf /usr/local/bin/aj /usr/local/bin/AJ && /usr/local/bin/aj --auto'
+bash -c 'curl -sSL https://raw.githubusercontent.com/iiidcc/socket5-out-xray/main/AJ.sh -o /usr/local/bin/aj && chmod +x /usr/local/bin/aj && ln -sf /usr/local/bin/aj /usr/local/bin/AJ && /usr/local/bin/aj --auto'
 ```
 
 自动完成以下内容：
