@@ -60,8 +60,8 @@ detect_country() {
     COUNTRY="$detected"
     echo "🌍 自动模式：检测到国家代码 $COUNTRY"
     # 若检测结果不在支持列表，则退出
-    if [[ ! " US GB DE FR JP MX ES " =~ " $COUNTRY " ]]; then
-      echo "❌ 自动检测到的国家代码 $COUNTRY 不受支持，仅支持 [US GB DE FR JP MX ES]"
+    if [[ ! " US GB DE FR JP MX ES HK TW SG KR AU CA NL RU IN IT CH SE NO PL BR AR TH MY ID VN TR AE ZA NZ PT BE AT FI CL CO PH " =~ " $COUNTRY " ]]; then
+      echo "❌ 自动检测到的国家代码 $COUNTRY 不受支持，仅支持 [US GB DE FR JP MX ES HK TW SG KR AU CA NL RU IN IT CH SE NO PL BR AR TH MY ID VN TR AE ZA NZ PT BE AT FI CL CO PH]"
       exit 1
     fi
     return
@@ -74,14 +74,14 @@ detect_country() {
     echo "⚠️ 无法检测国家代码，请手动选择。"
     detected=""
   fi
-  if [[ -n "$detected" && " US GB DE FR JP MX ES " =~ " $detected " ]]; then
+  if [[ -n "$detected" && " US GB DE FR JP MX ES HK TW SG KR AU CA NL RU IN IT CH SE NO PL BR AR TH MY ID VN TR AE ZA NZ PT BE AT FI CL CO PH " =~ " $detected " ]]; then
     read -p "👉 是否使用检测到的国家代码? 按回车默认[Y] (Y/n): " use_detected
     if [[ "$use_detected" =~ ^[Nn]$ ]]; then
       detected=""
     fi
   fi
   if [[ -z "$detected" ]]; then
-    echo "可选国家代码： [US] [GB] [DE] [FR] [JP] [MX] [ES]"
+    echo "可选国家代码： [US] [GB] [DE] [FR] [JP] [MX] [ES] [HK] [TW] [SG] [KR] [AU] [CA] [NL] [RU] [IN] [IT] [CH] [SE] [NO] [PL] [BR] [AR] [TH] [MY] [ID] [VN] [TR] [AE] [ZA] [NZ] [PT] [BE] [AT] [FI] [CL] [CO] [PH]"
     read -p "请输入要使用的国家代码: " COUNTRY
   else
     echo "已选择国家代码: $detected"
@@ -89,7 +89,7 @@ detect_country() {
   fi
 
   # 再次验证用户选择的国家代码是否受支持
-  if [[ ! " US GB DE FR JP MX ES " =~ " $COUNTRY " ]]; then
+  if [[ ! " US GB DE FR JP MX ES HK TW SG KR AU CA NL RU IN IT CH SE NO PL BR AR TH MY ID VN TR AE ZA NZ PT BE AT FI CL CO PH " =~ " $COUNTRY " ]]; then
     echo "❌ 不支持的国家代码: $COUNTRY"
     exit 1
   fi
@@ -125,6 +125,37 @@ setup_timezone_and_dns() {
     [JP]="Asia/Tokyo"
     [MX]="America/Mexico_City"
     [ES]="Europe/Madrid"
+    [HK]="Asia/Hong_Kong"
+    [TW]="Asia/Taipei"
+    [SG]="Asia/Singapore"
+    [KR]="Asia/Seoul"
+    [AU]="Australia/Sydney"
+    [CA]="America/Toronto"
+    [NL]="Europe/Amsterdam"
+    [RU]="Europe/Moscow"
+    [IN]="Asia/Kolkata"
+    [IT]="Europe/Rome"
+    [CH]="Europe/Zurich"
+    [SE]="Europe/Stockholm"
+    [NO]="Europe/Oslo"
+    [PL]="Europe/Warsaw"
+    [BR]="America/Sao_Paulo"
+    [AR]="America/Buenos_Aires"
+    [TH]="Asia/Bangkok"
+    [MY]="Asia/Kuala_Lumpur"
+    [ID]="Asia/Jakarta"
+    [VN]="Asia/Ho_Chi_Minh"
+    [TR]="Europe/Istanbul"
+    [AE]="Asia/Dubai"
+    [ZA]="Africa/Johannesburg"
+    [NZ]="Pacific/Auckland"
+    [PT]="Europe/Lisbon"
+    [BE]="Europe/Brussels"
+    [AT]="Europe/Vienna"
+    [FI]="Europe/Helsinki"
+    [CL]="America/Santiago"
+    [CO]="America/Bogota"
+    [PH]="Asia/Manila"
   )
   declare -A DNS_SERVERS=(
     [US]='["tls://8.8.8.8","tls://8.8.4.4","localhost"]'
@@ -134,6 +165,37 @@ setup_timezone_and_dns() {
     [JP]='["tls://210.130.1.1","tls://210.130.1.2","localhost"]'
     [MX]='["tls://8.8.8.8","tls://8.8.4.4","localhost"]'
     [ES]='["tls://62.36.225.150","tls://8.8.8.8","localhost"]'
+    [HK]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [TW]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [SG]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [KR]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [AU]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [CA]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [NL]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [RU]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [IN]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [IT]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [CH]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [SE]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [NO]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [PL]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [BR]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [AR]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [TH]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [MY]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [ID]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [VN]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [TR]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [AE]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [ZA]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [NZ]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [PT]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [BE]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [AT]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [FI]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [CL]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [CO]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
+    [PH]='["tls://8.8.8.8","tls://1.1.1.1","localhost"]'
   )
   local timezone="${TIMEZONES[$COUNTRY]}"
   local dns_servers="${DNS_SERVERS[$COUNTRY]}"
